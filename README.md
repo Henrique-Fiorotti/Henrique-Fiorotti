@@ -12,6 +12,102 @@
   <img height=195rem src="https://github-readme-stats.vercel.app/api/top-langs/?username=henrique-fiorotti&layout=donut&border_radius=7">
 </div>
 
+<hr>
+
+### 🛠️ Skills and Tools
+  <img 
+      width="40"
+      height="40"
+      alt="HTML"
+      align="left"
+      title="HTML"
+      style="padding-right: 8px;" 
+      src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-plain.svg"
+  />
+  <img 
+      width="40"
+      height="40"
+      alt="CSS"
+      align="left"
+      title="CSS"
+      style="padding-right: 8px;" 
+    src= "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-plain.svg"
+  />
+  <img 
+      width="40"
+      height="40"
+      alt="JS"
+      align="left"
+      title="JS"
+      style="padding-right: 8px;" 
+    src= "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-plain.svg" 
+  />
+  <img 
+      width="40"
+      height="40"
+      alt="Tailwind"
+      align="left"
+      title="Tailwind"
+      style="padding-right: 8px;" 
+      src= "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" />
+  <img 
+      width="40"
+      height="40"
+      alt="Python"
+      align="left"
+      title="Python"
+      style="padding-right: 8px;" 
+      src= "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-plain.svg" />
+  <img 
+      width="40"
+      height="40"
+      alt="PHP"
+      align="left"
+      title="PHP"
+      style="padding-right: 8px;" 
+      src= "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-plain.svg" />
+  <img
+      width="40"
+      height="40"
+      alt="Docker"
+      align="left"
+      title="Docker"
+      style="padding-right: 8px;" 
+      src= "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-plain.svg" />
+  <img 
+      width="40"
+      height="40"
+      alt="Git"
+      align="left"
+      title="Git"
+      style="padding-right: 8px;" 
+      src= "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-plain.svg" />
+  <img
+      width="40"
+      height="40"
+      alt="MySQL"
+      align="left"
+      title="MySQL"
+      style="padding-right: 8px;" 
+      src= "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" />
+  <img 
+      width="40"
+      height="40"
+      alt="AWS"
+      align="left"
+      title="AWS"
+      style="padding-right: 8px;" 
+      src= "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" />
+  <img 
+      width="40"
+      height="40"
+      alt="Vercel"
+      align="left"
+      title="Vercel"
+      style="padding-right: 8px;" 
+      src= "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg" />
+
+
 
 
 <!---
