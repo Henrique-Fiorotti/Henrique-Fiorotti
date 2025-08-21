@@ -74,7 +74,7 @@
       title="Docker"
       style="padding-right: 8px;" 
       src= "https://github.com/user-attachments/assets/f8b320f6-6712-4f8c-82a1-2842ee303bb3" />
-" />
+
   <img 
       width="40"
       height="40"
