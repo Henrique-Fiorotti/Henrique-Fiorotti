@@ -102,11 +102,12 @@
   <img 
       width="40"
       height="40"
-      alt="Vercel"
+      alt="Node"
       align="left"
-      title="Vercel"
+      title="Node"
       style="padding-right: 8px;" 
-      src= "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg" />
+      src= "https://github.com/user-attachments/assets/537b04dd-64a5-4f81-a38c-3e91e5679d1a" 
+    />
 
 
 
