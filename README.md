@@ -54,14 +54,6 @@
       title="Python"
       style="padding-right: 8px;" 
       src= "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-plain.svg" />
-  <img 
-      width="40"
-      height="40"
-      alt="PHP"
-      align="left"
-      title="PHP"
-      style="padding-right: 8px;" 
-      src= "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-plain.svg" />
   <img
       width="40"
       height="40"
