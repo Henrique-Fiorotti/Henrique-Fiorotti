@@ -3,11 +3,6 @@
     <code>print("Hi! I'm Henrique Fiorotti") </code></span>
 </h3>
 
-
-<div>
-  <img height=195rem src="https://github-readme-stats.vercel.app/api?username=henrique-fiorotti&show_icons=true&bg_color=00000000&border_radius=6">
-</div>
-
 <hr>
 
 ### 🛠️ Skills and Tools
