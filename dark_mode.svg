@@ -1,23 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="510" viewBox="0 0 960 510" role="img" aria-labelledby="title desc"><title id="title">Perfil de Henrique Fiorotti</title><desc id="desc">Painel em estilo terminal. Henrique Fiorotti, aprendendo Python e desenvolvimento de sistemas. Projetos públicos: orbis e atv-paivs-techrent.</desc>
-<rect x="1" y="1" width="958" height="508" rx="12" fill="#0d1117" stroke="#30363d"/>
-<g font-family="Consolas, DejaVu Sans Mono, monospace"><text x="26" y="32" font-size="12" fill="#8b949e">~/Henrique-Fiorotti</text>
-<path d="M24 49H936 M344 76V465" stroke="#30363d"/>
-<text x="36" y="183" font-size="23" fill="#58a6ff" xml:space="preserve">██╗  ██╗███████╗</text>
-<text x="36" y="209" font-size="23" fill="#58a6ff" xml:space="preserve">██║  ██║██╔════╝</text>
-<text x="36" y="235" font-size="23" fill="#58a6ff" xml:space="preserve">███████║█████╗  </text>
-<text x="36" y="261" font-size="23" fill="#58a6ff" xml:space="preserve">██╔══██║██╔══╝  </text>
-<text x="36" y="287" font-size="23" fill="#58a6ff" xml:space="preserve">██║  ██║██║     </text>
-<text x="36" y="313" font-size="23" fill="#58a6ff" xml:space="preserve">╚═╝  ╚═╝╚═╝     </text>
-<text x="48" y="378" font-size="14" fill="#8b949e">HENRIQUE FIOROTTI</text>
-<text x="376" y="92" font-size="17" fill="#58a6ff">Henrique-Fiorotti@github</text>
-<text x="376" y="117" font-size="13" fill="#8b949e">──────────────────────────────────────────</text>
-<text x="376" y="157" font-size="14"><tspan fill="#ffa657">Nome</tspan><tspan fill="#8b949e"> · </tspan><tspan fill="#c9d1d9">Henrique Fiorotti</tspan></text>
-<text x="376" y="188" font-size="14"><tspan fill="#ffa657">Foco</tspan><tspan fill="#8b949e"> · </tspan><tspan fill="#c9d1d9">Desenvolvimento de sistemas</tspan></text>
-<text x="376" y="219" font-size="14"><tspan fill="#ffa657">Linguagens</tspan><tspan fill="#8b949e"> · </tspan><tspan fill="#c9d1d9">Python, JavaScript, HTML, CSS</tspan></text>
-<text x="376" y="250" font-size="14"><tspan fill="#ffa657">Ferramentas</tspan><tspan fill="#8b949e"> · </tspan><tspan fill="#c9d1d9">Git, Docker, MySQL</tspan></text>
-<text x="376" y="312" font-size="15" fill="#58a6ff">─ Projetos públicos ──────────────────</text>
-<text x="376" y="346" font-size="14"><tspan fill="#ffa657">01</tspan><tspan fill="#8b949e"> · </tspan><tspan fill="#c9d1d9">orbis</tspan></text>
-<text x="376" y="377" font-size="14"><tspan fill="#ffa657">02</tspan><tspan fill="#8b949e"> · </tspan><tspan fill="#c9d1d9">atv-paivs-techrent</tspan></text>
-<text x="376" y="416" font-size="15" fill="#58a6ff">─ Perfil ─────────────────────────────</text>
-<text x="376" y="450" font-size="14"><tspan fill="#ffa657">GitHub</tspan><tspan fill="#8b949e"> · </tspan><tspan fill="#c9d1d9">github.com/Henrique-Fiorotti</tspan></text>
-<text x="376" y="279" font-size="14" fill="#c9d1d9">Tailwind CSS · Node.js · AWS</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="500" viewBox="0 0 840 500" font-family="Consolas, Menlo, monospace" font-size="13px">
+<title>Henrique Fiorotti — GitHub profile</title>
+<rect x="0.5" y="0.5" width="839" height="499" rx="10" fill="#0d1117" stroke="#30363d"/>
+<text x="57" y="177" font-size="24px" fill="#8b949e" xml:space="preserve">██╗  ██╗███████╗</text>
+<text x="57" y="201" font-size="24px" fill="#8b949e" xml:space="preserve">██║  ██║██╔════╝</text>
+<text x="57" y="225" font-size="24px" fill="#8b949e" xml:space="preserve">███████║█████╗  </text>
+<text x="57" y="249" font-size="24px" fill="#8b949e" xml:space="preserve">██╔══██║██╔══╝  </text>
+<text x="57" y="273" font-size="24px" fill="#8b949e" xml:space="preserve">██║  ██║██║     </text>
+<text x="57" y="297" font-size="24px" fill="#8b949e" xml:space="preserve">╚═╝  ╚═╝╚═╝     </text>
+<text x="390" y="45" xml:space="preserve"><tspan fill="#58a6ff">henrique-fiorotti@github </tspan><tspan fill="#484f58">──────────────────────────────</tspan></text>
+<text x="390" y="87" xml:space="preserve"><tspan fill="#ffa657">OS: </tspan><tspan fill="#484f58">................................................ </tspan><tspan fill="#c9d1d9">—</tspan></text>
+<text x="390" y="108" xml:space="preserve"><tspan fill="#ffa657">Uptime: </tspan><tspan fill="#484f58">.................. </tspan><tspan fill="#c9d1d9">20 years, 0 months, 18 days</tspan></text>
+<text x="390" y="129" xml:space="preserve"><tspan fill="#ffa657">Host: </tspan><tspan fill="#484f58">.............................................. </tspan><tspan fill="#c9d1d9">—</tspan></text>
+<text x="390" y="150" xml:space="preserve"><tspan fill="#ffa657">Kernel: </tspan><tspan fill="#484f58">......................... </tspan><tspan fill="#c9d1d9">Software development</tspan></text>
+<text x="390" y="171" xml:space="preserve"><tspan fill="#ffa657">IDE: </tspan><tspan fill="#484f58">............................................... </tspan><tspan fill="#c9d1d9">—</tspan></text>
+<text x="390" y="213" xml:space="preserve"><tspan fill="#ffa657">Languages.Programming: </tspan><tspan fill="#484f58">.. </tspan><tspan fill="#c9d1d9">Python, JavaScript, HTML, CSS</tspan></text>
+<text x="390" y="234" xml:space="preserve"><tspan fill="#ffa657">Languages.Real: </tspan><tspan fill="#484f58">........................... </tspan><tspan fill="#c9d1d9">Portuguese</tspan></text>
+<text x="390" y="255" xml:space="preserve"><tspan fill="#ffa657">Hobbies: </tspan><tspan fill="#484f58">........................................... </tspan><tspan fill="#c9d1d9">—</tspan></text>
+<text x="390" y="297" xml:space="preserve"><tspan fill="#58a6ff">─ Contact </tspan><tspan fill="#484f58">─────────────────────────────────────────────</tspan></text>
+<text x="390" y="318" xml:space="preserve"><tspan fill="#ffa657">Email: </tspan><tspan fill="#484f58">............................................. </tspan><tspan fill="#c9d1d9">—</tspan></text>
+<text x="390" y="339" xml:space="preserve"><tspan fill="#ffa657">LinkedIn: </tspan><tspan fill="#484f58">.......................................... </tspan><tspan fill="#c9d1d9">—</tspan></text>
+<text x="390" y="381" xml:space="preserve"><tspan fill="#58a6ff">─ GitHub Stats </tspan><tspan fill="#484f58">────────────────────────────────────────</tspan></text>
+<text x="390" y="402" xml:space="preserve"><tspan fill="#ffa657">Repos: </tspan><tspan fill="#484f58">... </tspan><tspan fill="#c9d1d9">—</tspan><tspan fill="#484f58"> | </tspan><tspan fill="#ffa657">Stars: </tspan><tspan fill="#484f58">........ </tspan><tspan fill="#c9d1d9">—</tspan></text>
+<text x="390" y="423" xml:space="preserve"><tspan fill="#ffa657">Commits: </tspan><tspan fill="#484f58">..... </tspan><tspan fill="#c9d1d9">—</tspan><tspan fill="#484f58"> | </tspan><tspan fill="#ffa657">Followers: </tspan><tspan fill="#484f58">... </tspan><tspan fill="#c9d1d9">—</tspan></text>
+<text x="390" y="444" xml:space="preserve"><tspan fill="#ffa657">Lines of Code: </tspan><tspan fill="#c9d1d9">—</tspan><tspan fill="#484f58"> ( </tspan><tspan fill="#3fb950">—++</tspan><tspan fill="#484f58">, </tspan><tspan fill="#f85149">—--</tspan><tspan fill="#484f58"> )</tspan></text>
+</svg>
