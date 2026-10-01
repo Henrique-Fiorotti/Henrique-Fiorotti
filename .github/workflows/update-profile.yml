@@ -1,0 +1,34 @@
+name: Update profile
+on:
+  schedule:
+    - cron: '10 9 * * *'
+  workflow_dispatch:
+  push:
+    paths:
+      - profile.json
+      - portrait.txt
+      - scripts/update_profile.py
+      - .github/workflows/update-profile.yml
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate profile
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/update_profile.py --fetch
+      - name: Save changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add dark_mode.svg light_mode.svg stats.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update profile uptime and public stats'
+            git push
+          fi
