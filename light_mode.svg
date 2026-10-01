@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="510" viewBox="0 0 960 510" role="img" aria-labelledby="title desc"><title id="title">Perfil de Henrique Fiorotti</title><desc id="desc">Painel em estilo terminal. Henrique Fiorotti, aprendendo Python e desenvolvimento de sistemas. Projetos públicos: orbis e atv-paivs-techrent.</desc>
+<rect x="1" y="1" width="958" height="508" rx="12" fill="#ffffff" stroke="#d0d7de"/>
+<g font-family="Consolas, DejaVu Sans Mono, monospace"><text x="26" y="32" font-size="12" fill="#57606a">~/Henrique-Fiorotti</text>
+<path d="M24 49H936 M344 76V465" stroke="#d0d7de"/>
+<text x="36" y="183" font-size="23" fill="#0969da" xml:space="preserve">██╗  ██╗███████╗</text>
+<text x="36" y="209" font-size="23" fill="#0969da" xml:space="preserve">██║  ██║██╔════╝</text>
+<text x="36" y="235" font-size="23" fill="#0969da" xml:space="preserve">███████║█████╗  </text>
+<text x="36" y="261" font-size="23" fill="#0969da" xml:space="preserve">██╔══██║██╔══╝  </text>
+<text x="36" y="287" font-size="23" fill="#0969da" xml:space="preserve">██║  ██║██║     </text>
+<text x="36" y="313" font-size="23" fill="#0969da" xml:space="preserve">╚═╝  ╚═╝╚═╝     </text>
+<text x="48" y="378" font-size="14" fill="#57606a">HENRIQUE FIOROTTI</text>
+<text x="376" y="92" font-size="17" fill="#0969da">Henrique-Fiorotti@github</text>
+<text x="376" y="117" font-size="13" fill="#57606a">──────────────────────────────────────────</text>
+<text x="376" y="157" font-size="14"><tspan fill="#953800">Nome</tspan><tspan fill="#57606a"> · </tspan><tspan fill="#24292f">Henrique Fiorotti</tspan></text>
+<text x="376" y="188" font-size="14"><tspan fill="#953800">Foco</tspan><tspan fill="#57606a"> · </tspan><tspan fill="#24292f">Desenvolvimento de sistemas</tspan></text>
+<text x="376" y="219" font-size="14"><tspan fill="#953800">Linguagens</tspan><tspan fill="#57606a"> · </tspan><tspan fill="#24292f">Python, JavaScript, HTML, CSS</tspan></text>
+<text x="376" y="250" font-size="14"><tspan fill="#953800">Ferramentas</tspan><tspan fill="#57606a"> · </tspan><tspan fill="#24292f">Git, Docker, MySQL</tspan></text>
+<text x="376" y="312" font-size="15" fill="#0969da">─ Projetos públicos ──────────────────</text>
+<text x="376" y="346" font-size="14"><tspan fill="#953800">01</tspan><tspan fill="#57606a"> · </tspan><tspan fill="#24292f">orbis</tspan></text>
+<text x="376" y="377" font-size="14"><tspan fill="#953800">02</tspan><tspan fill="#57606a"> · </tspan><tspan fill="#24292f">atv-paivs-techrent</tspan></text>
+<text x="376" y="416" font-size="15" fill="#0969da">─ Perfil ─────────────────────────────</text>
+<text x="376" y="450" font-size="14"><tspan fill="#953800">GitHub</tspan><tspan fill="#57606a"> · </tspan><tspan fill="#24292f">github.com/Henrique-Fiorotti</tspan></text>
+<text x="376" y="279" font-size="14" fill="#24292f">Tailwind CSS · Node.js · AWS</text></g></svg>
