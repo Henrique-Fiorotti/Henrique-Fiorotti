@@ -3,6 +3,7 @@ from pathlib import Path
 from datetime import date, datetime
 from zoneinfo import ZoneInfo
 import calendar, json, os, subprocess, tempfile, urllib.request
+from urllib.parse import urlencode
 from html import escape
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -35,6 +36,16 @@ def fetch_stats(login):
         if len(batch)<100: break
         page+=1
     stats = {'repos':user['public_repos'], 'stars':sum(r['stargazers_count'] for r in repos), 'followers':user['followers']}
+    # Public indexed commits and pull requests identify external repositories.
+    external=set()
+    for kind, query in [('commits', f'author:{login}'), ('issues', f'author:{login} type:pr')]:
+        for page in range(1, 11):
+            found=api('/search/'+kind+'?'+urlencode({'q':query,'per_page':100,'page':page}))
+            for item in found['items']:
+                repo=item['repository']['full_name'] if kind=='commits' else '/'.join(item['repository_url'].split('/')[-2:])
+                if repo.split('/')[0].lower()!=login.lower(): external.add(repo)
+            if page*100 >= min(found['total_count'], 1000): break
+    stats['contributed']=len(external)
     commits=adds=dels=0
     with tempfile.TemporaryDirectory() as tmp:
         for i,repo in enumerate(repos):
@@ -53,11 +64,11 @@ def fetch_stats(login):
 def render(mode, cfg, stats, age):
     palette = {'dark':['#0d1117','#30363d','#8b949e','#58a6ff','#484f58','#ffa657','#c9d1d9','#3fb950','#f85149'], 'light':['#ffffff','#d0d7de','#57606a','#0969da','#afb8c1','#953800','#24292f','#1a7f37','#cf222e']}[mode]
     bg,border,muted,blue,dots,orange,fg,green,red=palette
-    out=['<svg xmlns="http://www.w3.org/2000/svg" width="840" height="500" viewBox="0 0 840 500" font-family="Consolas, Menlo, monospace" font-size="13px">',f'<title>{escape(cfg["name"])} — GitHub profile</title>', f'<rect x="0.5" y="0.5" width="839" height="499" rx="10" fill="{bg}" stroke="{border}"/>']
+    out=['<svg xmlns="http://www.w3.org/2000/svg" width="840" height="500" viewBox="0 0 840 500" font-family="Consolas, Menlo, monospace" font-size="13px">',f'<title>{escape(cfg["name"])} — GitHub profile</title>']
     portrait=ROOT/'portrait.txt'
     if portrait.exists():
-        for i,line in enumerate(portrait.read_text().splitlines()[:28]):
-            out.append(f'<text x="25" y="{40+i*15}" fill="{muted}" xml:space="preserve">{escape(line[:43])}</text>')
+        for i,line in enumerate(portrait.read_text().splitlines()[:48]):
+            out.append(f'<text x="16" y="{52+i*10}" font-size="9px" fill="{muted}" xml:space="preserve">{escape(line[:68])}</text>')
     else:
         art=['██╗  ██╗███████╗','██║  ██║██╔════╝','███████║█████╗  ','██╔══██║██╔══╝  ','██║  ██║██║     ','╚═╝  ╚═╝╚═╝     ']
         for i,line in enumerate(art):
@@ -76,7 +87,7 @@ def render(mode, cfg, stats, age):
     section(297,'─ Contact'); row(318,'Email',cfg['email']); row(339,'LinkedIn',cfg['linkedin'])
     section(381,'─ GitHub Stats')
     def n(key): return f'{stats[key]:,}' if key in stats else '—'
-    spans(402,[(orange,'Repos: '),(dots,'... '),(fg,n('repos')),(dots,' | '),(orange,'Stars: '),(dots,'........ '),(fg,n('stars'))])
+    spans(402,[(orange,'Repos: '),(fg,n('repos')+' {Contributed: '+n('contributed')+'}'),(dots,' | '),(orange,'Stars: '),(dots,'.. '),(fg,n('stars'))])
     spans(423,[(orange,'Commits: '),(dots,'..... '),(fg,n('commits')),(dots,' | '),(orange,'Followers: '),(dots,'... '),(fg,n('followers'))])
     spans(444,[(orange,'Lines of Code: '),(fg,n('lines')),(dots,' ( '),(green,n('additions')+'++'),(dots,', '),(red,n('deletions')+'--'),(dots,' )')])
     out.append('</svg>')
@@ -87,8 +98,12 @@ def main():
     stats_path=ROOT/'stats.json'
     stats=json.loads(stats_path.read_text()) if stats_path.exists() else {}
     if '--fetch' in __import__('sys').argv:
-        stats=fetch_stats(cfg['login'])
-        stats_path.write_text(json.dumps(stats,indent=2)+'\n')
+        try:
+            stats=fetch_stats(cfg['login'])
+            stats_path.write_text(json.dumps(stats,indent=2)+'\n')
+        except Exception as error:
+            print(f'::warning::Could not refresh public GitHub stats: {type(error).__name__}')
+    stats_path.write_text(json.dumps(stats,indent=2)+'\n')
     today=datetime.now(ZoneInfo('America/Sao_Paulo')).date()
     age=uptime(date.fromisoformat(cfg['birthdate']),today)
     for mode in ['dark','light']:
