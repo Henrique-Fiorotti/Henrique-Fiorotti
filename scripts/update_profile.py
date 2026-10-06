@@ -2,7 +2,7 @@
 from pathlib import Path
 from datetime import date, datetime
 from zoneinfo import ZoneInfo
-import calendar, json, os, subprocess, tempfile, urllib.request
+import calendar, json, os, subprocess, tempfile, time, urllib.request, urllib.error
 from urllib.parse import urlencode
 from html import escape
 ROOT = Path(__file__).resolve().parents[1]
@@ -24,9 +24,35 @@ def fetch_stats(login):
     token = os.environ.get('GH_TOKEN', '')
     def api(path):
         headers={'Accept':'application/vnd.github+json','User-Agent':'profile-readme'}
-        if token: headers['Authorization'] = f'Bearer {token}'
-        with urllib.request.urlopen(urllib.request.Request('https://api.github.com' + path, headers=headers), timeout=30) as r:
-            return json.load(r)
+        if token:
+            headers['Authorization'] = f'token {token}'
+        last_error = None
+        for attempt in range(3):
+            try:
+                request = urllib.request.Request('https://api.github.com' + path, headers=headers)
+                with urllib.request.urlopen(request, timeout=30) as response:
+                    return json.load(response)
+            except urllib.error.HTTPError as error:
+                body = error.read().decode('utf-8', 'replace')
+                try:
+                    payload = json.loads(body)
+                    message = payload.get('message', body)
+                except json.JSONDecodeError:
+                    message = body or str(error)
+                last_error = RuntimeError(f'GitHub API request failed for {path}: {error.code} {message}')
+                if error.code in (403, 429) and attempt < 2:
+                    time.sleep(2 ** attempt)
+                    continue
+                raise last_error
+            except (urllib.error.URLError, OSError) as error:
+                last_error = RuntimeError(f'GitHub API request failed for {path}: {error}')
+                if attempt < 2:
+                    time.sleep(2 ** attempt)
+                    continue
+                raise last_error
+        if last_error is not None:
+            raise last_error
+        raise RuntimeError(f'GitHub API request failed for {path}: unknown error')
     user = api(f'/users/{login}')
     repos=[]
     page=1
@@ -67,15 +93,15 @@ def cfg_value(cfg, key, default='—'):
 
 
 def render(mode, cfg, stats, age):
-    palette = {'dark':['#0d1117','#30363d','#8b949e','#58a6ff','#484f58','#ffa657','#c9d1d9','#3fb950','#f85149'], 'light':['#ffffff','#d0d7de','#57606a','#0969da','#afb8c1','#953800','#24292f','#1f883d','#cf222e']}
+    palette = {'dark':['#0d1117','#30363d','#8b949e','#58a6ff','#484f58','#ffa657','#c9d1d9','#3fb950','#f85149'], 'light':['#ffffff','#d0d7de','#57606a','#0969da','#afb8c1','#953800','#24292f','#1f2328','#2da44e','#cf222e']}
     bg,border,muted,blue,dots,orange,fg,green,red=palette[mode]
-    out=['<svg xmlns="http://www.w3.org/2000/svg" width="840" height="500" viewBox="0 0 840 500" font-family="Consolas, Menlo, monospace" font-size="13px">',f'<title>{escape(str(cfg.get("name","Profile")))} — GitHub Profile</title>']
+    out=['<svg xmlns="http://www.w3.org/2000/svg" width="840" height="500" viewBox="0 0 840 500" font-family="Consolas, Menlo, monospace" font-size="13px">',f'<title>{escape(str(cfg.get("name","Profile")))}</title>']
     portrait=ROOT/'portrait.txt'
     if portrait.exists():
         for i,line in enumerate(portrait.read_text().splitlines()[:48]):
             out.append(f'<text x="16" y="{52+i*10}" font-size="9px" fill="{muted}" xml:space="preserve">{escape(line[:68])}</text>')
     else:
-        art=['██╗  ██╗███████╗','██║  ██║██╔════╝','███████║█████╗  ','██╔══██║██╔═══██╗','███████║███████║','╚══════╝╚══════╝']
+        art=['██╗  ██╗███████╗','██║  ██║██╔════╝','███████║█████╗  ','██╔══██║██╔══╝  ','██║  ██║███████╗','██║  ██║╚════██║','╚═╝  ╚═╝╚═════╝']
         for i,line in enumerate(art):
             out.append(f'<text x="57" y="{177+i*24}" font-size="24px" fill="{muted}" xml:space="preserve">{line}</text>')
     def spans(y,items):
@@ -106,9 +132,15 @@ def main():
     if '--fetch' in __import__('sys').argv:
         try:
             stats=fetch_stats(cfg['login'])
-            stats_path.write_text(json.dumps(stats,indent=2)+'\n')
         except Exception as error:
-            print(f'::warning::Could not refresh public GitHub stats: {type(error).__name__}')
+            print(f'::warning::Could not refresh public GitHub stats: {type(error).__name__}: {error}')
+            if stats_path.exists():
+                try:
+                    stats=json.loads(stats_path.read_text())
+                except Exception:
+                    stats={}
+            else:
+                stats={}
     stats_path.write_text(json.dumps(stats,indent=2)+'\n')
     today=datetime.now(ZoneInfo('America/Sao_Paulo')).date()
     age=uptime(date.fromisoformat(cfg['birthdate']),today)
