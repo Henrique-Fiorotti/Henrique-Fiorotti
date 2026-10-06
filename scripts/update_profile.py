@@ -40,7 +40,7 @@ def fetch_stats(login):
     external=set()
     for kind, query in [('commits', f'author:{login}'), ('issues', f'author:{login} type:pr')]:
         for page in range(1, 11):
-            found=api('/search/'+kind+'?'+urlencode({'q':query,'per_page':100,'page':page}))
+            found=api('/search/'+kind+'?'+urlencode({'q':query,'per_page':100,'page':page))
             for item in found['items']:
                 repo=item['repository']['full_name'] if kind=='commits' else '/'.join(item['repository_url'].split('/')[-2:])
                 if repo.split('/')[0].lower()!=login.lower(): external.add(repo)
@@ -61,16 +61,21 @@ def fetch_stats(login):
     stats.update(commits=commits, additions=adds, deletions=dels, lines=adds-dels)
     return stats
 
+def cfg_value(cfg, key, default='—'):
+    value = cfg.get(key)
+    return value if value not in (None, '') else default
+
+
 def render(mode, cfg, stats, age):
-    palette = {'dark':['#0d1117','#30363d','#8b949e','#58a6ff','#484f58','#ffa657','#c9d1d9','#3fb950','#f85149'], 'light':['#ffffff','#d0d7de','#57606a','#0969da','#afb8c1','#953800','#24292f','#1a7f37','#cf222e']}[mode]
-    bg,border,muted,blue,dots,orange,fg,green,red=palette
-    out=['<svg xmlns="http://www.w3.org/2000/svg" width="840" height="500" viewBox="0 0 840 500" font-family="Consolas, Menlo, monospace" font-size="13px">',f'<title>{escape(cfg["name"])} — GitHub profile</title>']
+    palette = {'dark':['#0d1117','#30363d','#8b949e','#58a6ff','#484f58','#ffa657','#c9d1d9','#3fb950','#f85149'], 'light':['#ffffff','#d0d7de','#57606a','#0969da','#afb8c1','#953800','#24292f','#1f883d','#cf222e']}
+    bg,border,muted,blue,dots,orange,fg,green,red=palette[mode]
+    out=['<svg xmlns="http://www.w3.org/2000/svg" width="840" height="500" viewBox="0 0 840 500" font-family="Consolas, Menlo, monospace" font-size="13px">',f'<title>{escape(str(cfg.get("name","Profile")))} — GitHub Profile</title>']
     portrait=ROOT/'portrait.txt'
     if portrait.exists():
         for i,line in enumerate(portrait.read_text().splitlines()[:48]):
             out.append(f'<text x="16" y="{52+i*10}" font-size="9px" fill="{muted}" xml:space="preserve">{escape(line[:68])}</text>')
     else:
-        art=['██╗  ██╗███████╗','██║  ██║██╔════╝','███████║█████╗  ','██╔══██║██╔══╝  ','██║  ██║██║     ','╚═╝  ╚═╝╚═╝     ']
+        art=['██╗  ██╗███████╗','██║  ██║██╔════╝','███████║█████╗  ','██╔══██║██╔═══██╗','███████║███████║','╚══════╝╚══════╝']
         for i,line in enumerate(art):
             out.append(f'<text x="57" y="{177+i*24}" font-size="24px" fill="{muted}" xml:space="preserve">{line}</text>')
     def spans(y,items):
@@ -81,10 +86,10 @@ def render(mode, cfg, stats, age):
         spans(y,[(orange,label+': '),(dots,'.'*count+' '),(fg,value)])
     def section(y,title):
         spans(y,[(blue,title+' '),(dots,'─'*max(2,55-len(title)-1))])
-    section(45,cfg['login'].lower()+'@github')
-    row(87,'OS',cfg['os']); row(108,'Uptime',age); row(129,'Host',cfg['host']); row(150,'Kernel',cfg['kernel']); row(171,'IDE',cfg['ide'])
-    row(213,'Languages.Programming',cfg['programming']); row(234,'Languages.Real',cfg['languages']); row(255,'Hobbies',cfg['hobbies'])
-    section(297,'─ Contact'); row(318,'Email',cfg['email']); row(339,'LinkedIn',cfg['linkedin'])
+    section(45, str(cfg_value(cfg,'login','unknown')).lower()+'@github')
+    row(87,'OS',cfg_value(cfg,'os')); row(108,'Uptime',age); row(129,'Host',cfg_value(cfg,'host')); row(150,'Kernel',cfg_value(cfg,'kernel')); row(171,'IDE',cfg_value(cfg,'ide'))
+    row(213,'Languages.Programming',cfg_value(cfg,'programming')); row(234,'Languages.Real',cfg_value(cfg,'languages')); row(255,'Hobbies',cfg_value(cfg,'hobbies'))
+    section(297,'─ Contact'); row(318,'Email',cfg_value(cfg,'email')); row(339,'LinkedIn',cfg_value(cfg,'linkedin'))
     section(381,'─ GitHub Stats')
     def n(key): return f'{stats[key]:,}' if key in stats else '—'
     spans(402,[(orange,'Repos: '),(fg,n('repos')+' {Contributed: '+n('contributed')+'}'),(dots,' | '),(orange,'Stars: '),(dots,'.. '),(fg,n('stars'))])
@@ -92,6 +97,7 @@ def render(mode, cfg, stats, age):
     spans(444,[(orange,'Lines of Code: '),(fg,n('lines')),(dots,' ( '),(green,n('additions')+'++'),(dots,', '),(red,n('deletions')+'--'),(dots,' )')])
     out.append('</svg>')
     return '\n'.join(out)+'\n'
+
 
 def main():
     cfg=json.loads((ROOT/'profile.json').read_text())
