@@ -66,7 +66,7 @@ def fetch_stats(login):
     external=set()
     for kind, query in [('commits', f'author:{login}'), ('issues', f'author:{login} type:pr')]:
         for page in range(1, 11):
-            found=api('/search/'+kind+'?'+urlencode({'q':query,'per_page':100,'page':page))
+            found=api('/search/'+kind+'?'+urlencode({'q':query,'per_page':100,'page':page}))
             for item in found['items']:
                 repo=item['repository']['full_name'] if kind=='commits' else '/'.join(item['repository_url'].split('/')[-2:])
                 if repo.split('/')[0].lower()!=login.lower(): external.add(repo)
